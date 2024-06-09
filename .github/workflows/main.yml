@@ -13,9 +13,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Build Docker image
-        run: docker build -t ${{ github.repository }}:latest .
-
       - name: Publish Image
         uses: matootie/github-docker@v3.0.0
         with:
