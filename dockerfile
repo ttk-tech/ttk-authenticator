@@ -10,6 +10,9 @@ COPY package*.json ./
 # Install any needed packages specified in package.json
 RUN npm install
 
+# Run the build script
+RUN npm run build
+
 # Bundle the app source inside the Docker image 
 # (Make sure you have a .dockerignore file to avoid copying node_modules)
 COPY . .
