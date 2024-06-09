@@ -2,7 +2,7 @@
   "name": "ttkn-authenticator",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/3M1W/ttkn-authenticator.git",
+  "repository": "https://github.com/ttk-tech/ttkn-authenticator.git",
   "author": "Tuan Le <latuan2906@gmail.com>",
   "license": "MIT",
   "scripts": {
@@ -15,5 +15,8 @@
     "@types/node": "^20.14.2",
     "nodemon": "^3.1.3",
     "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
   }
 }
