@@ -1,18 +1,14 @@
+import http from 'http';
 import express from 'express';
 import mongoose from 'mongoose';
 import './config/logging';
 import { mongo, server } from './config/config';
-import http from 'http';
 
 export const application = express();
 export let httpServer: ReturnType<typeof http.createServer>;
 
 export const Main = async () => {
     // server connection
-    // application.get('/', (req: Request, res: Response) => {
-    //     res.send('TTK Authenticator! 🚀');
-    // });
-
     logging.log('----------------------------------------');
     logging.log('Starting Server');
     logging.log('----------------------------------------');
@@ -20,8 +16,12 @@ export const Main = async () => {
     httpServer = http.createServer(application);
     httpServer.listen(server.SERVER_PORT, () => {
         logging.log('----------------------------------------');
-        logging.log(`🚀 Server started on ${server.SERVER_HOSTNAME}:${server.SERVER_PORT}`);
+        logging.log(`🚀 Server started on ${server.SERVER_HOSTNAME} :${server.SERVER_PORT}`);
         logging.log('----------------------------------------');
+    });
+
+    application.get('/', (req, res, next) => {
+        return res.status(200).json({ hello: 'TTK Authenticator! 🚀' });
     });
 
     // database connection
@@ -38,6 +38,7 @@ export const Main = async () => {
     }
 }
 
+export const Shutdown = (callback: any) => httpServer && httpServer.close(callback);
 
 Main();
 
