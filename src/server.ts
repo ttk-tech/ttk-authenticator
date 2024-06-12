@@ -20,7 +20,7 @@ export const Main = async () => {
         logging.log('----------------------------------------');
     });
 
-    application.get('/', (req, res, next) => {
+    application.get(`/${server.SERVER_HOSTNAME}/health-check`, (req, res, next) => {
         return res.status(200).json({ hello: 'TTK Authenticator! 🚀' });
     });
 
