@@ -16,7 +16,7 @@ export const Main = async () => {
     httpServer = http.createServer(application);
     httpServer.listen(server.SERVER_PORT, () => {
         logging.log('----------------------------------------');
-        logging.log(`🚀 Server started on ${server.SERVER_HOSTNAME} :${server.SERVER_PORT}`);
+        logging.log(`🚀 ${server.SERVER_HOSTNAME} server started on ${server.SERVER_PORT}`);
         logging.log('----------------------------------------');
     });
 
@@ -28,7 +28,7 @@ export const Main = async () => {
     try {
         const connection = await mongoose.connect(mongo.MONGO_CONNECTION, mongo.MONGO_OPTIONS);
         logging.log('----------------------------------------');
-        logging.log('🚀 Connected to mongo version ' + connection.version);
+        logging.log(`🚀 Connected to mongo version ${connection.version}`);
         logging.log('----------------------------------------');
     } catch (error) {
         logging.log('----------------------------------------');
