@@ -7,7 +7,7 @@ import { mongo, server } from './config/config';
 export const application = express();
 export let httpServer: ReturnType<typeof http.createServer>;
 
-import userRoutes from './routes/user-route'
+import userRoutes from './traditional/routes/user-route'
 
 export const Main = async () => {
     // server connection
