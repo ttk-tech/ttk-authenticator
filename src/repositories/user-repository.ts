@@ -1,4 +1,3 @@
-// /src/repositories/userRepository.ts
 import { UserModel } from '../models/user-model';
 
 export class UserRepository {
