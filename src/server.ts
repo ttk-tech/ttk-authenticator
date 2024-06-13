@@ -7,6 +7,8 @@ import { mongo, server } from './config/config';
 export const application = express();
 export let httpServer: ReturnType<typeof http.createServer>;
 
+import userRoutes from './routes/user-route'
+
 export const Main = async () => {
     // server connection
     logging.log('----------------------------------------');
@@ -36,6 +38,10 @@ export const Main = async () => {
         logging.error(error);
         logging.log('----------------------------------------');
     }
+
+    // test clean architecture
+    application.use(express.json());
+    application.use('/auth', userRoutes);
 }
 
 export const Shutdown = (callback: any) => httpServer && httpServer.close(callback);
