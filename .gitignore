@@ -1,5 +1,5 @@
 # Ignore sample src file
-/sample
+src/sample/*
 
 # Ignore node_modules directory
 /node_modules
