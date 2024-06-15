@@ -3,3 +3,4 @@ export enum UserErrorType {
   UserDoesNotExist = 'User does not exist!',
   UserNotFound = 'Users not found',
 }
+

@@ -1,3 +1,4 @@
+import { EmailErrorType } from "../enums/emailErrorType";
 interface EmailProps {
   address: string;
 }
@@ -16,8 +17,7 @@ export class Email {
         /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
       )
     ) {
-      // throw new Error(EmailErrorType.InvalidEmail)
-      throw new Error
+      throw new Error(EmailErrorType.InvalidEmail)
     }
     this._address = props.address
   }
