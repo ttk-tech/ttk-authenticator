@@ -1,4 +1,4 @@
-import { IUsersRepository } from '../../application/repositories/iUsersRepository';
+import { IUsersRepository } from '../../application/repositories/User';
 
 export class UserRepository implements IUsersRepository {
   constructor(private prisma: PrismaClient) { }

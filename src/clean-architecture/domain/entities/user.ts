@@ -1,5 +1,5 @@
-import { ICreateUserRequestDTO } from '../dtos/User/createUserRequestDTO';
-import { IUpdateUserRequestDTO } from '../dtos/User/updateUserRequestDTO';
+import { ICreateUserRequestDTO } from '../dtos/User/CreateUser';
+import { IUpdateUserRequestDTO } from '../dtos/User/UpdateUser';
 import { Email } from '../valueObjects/email'
 
 /**

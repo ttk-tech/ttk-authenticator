@@ -1,6 +1,6 @@
-import { IUsersRepository } from '../../application/repositories/iUsersRepository'
-import { IPasswordHasher } from '../../application/providers/ipasswordHasher';
-import { ICreateUserUseCase } from '../../application/useCases/createUserUseCase';
+import { IUsersRepository } from '../../application/repositories/User'
+import { IPasswordHasher } from '../../application/providers/PasswordHasher';
+import { ICreateUserUseCase } from '../../application/useCases/CreateUser';
 
 export function createUserComposer() {
   const repository: IUsersRepository = new UserRepository(prismaClient)
