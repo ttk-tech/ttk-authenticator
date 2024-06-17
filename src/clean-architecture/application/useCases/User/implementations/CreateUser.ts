@@ -7,7 +7,6 @@ import { IUsersRepository } from '../../../repositories/User'
 import { ICreateUserUseCase } from '../CreateUser'
 
 
-
 /**
  * Use case for creating a new user.
  *

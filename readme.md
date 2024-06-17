@@ -17,3 +17,10 @@
 # 4.BCRYPT - library used for hashing and comparing passwords in a secure way
 
 - yarn add bcrypt-ts
+
+# 5.Prisma -
+
+- yarn add prisma --save-dev
+- yarn prisma
+- yarn prisma init
+- yarn add @prisma/client
