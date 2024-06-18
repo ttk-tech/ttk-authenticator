@@ -21,6 +21,7 @@ export class CreateUserUseCase implements ICreateUserUseCase {
    * @param {IUsersRepository} userRepository - The repository for user data.
    * @param {IPasswordHasher} passwordHasher - The password hasher provider.
    */
+
   constructor(
     private userRepository: IUsersRepository,
     private passwordHasher: IPasswordHasher,

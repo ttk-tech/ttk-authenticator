@@ -29,6 +29,7 @@ export class PasswordHasher implements IPasswordHasher {
    * @param {string} hashedPassword - The hashed password to compare against.
    * @returns {Promise<boolean>} True if the passwords match, false otherwise.
    */
+
   async comparePasswords(password: string, hashedPassword: string): Promise<boolean> {
     return bcrypt.compare(password, hashedPassword);
   }
