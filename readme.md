@@ -20,12 +20,6 @@
 
 # 5.Prisma -
 
-<!-- - yarn add prisma --save-dev
-- yarn prisma
-- yarn prisma init
-- yarn add @prisma/client
-- yarn add @prisma/cli --dev -->
-
 yarn add prisma --dev
 yarn add @prisma/client
 
