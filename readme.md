@@ -20,7 +20,16 @@
 
 # 5.Prisma -
 
-- yarn add prisma --save-dev
+<!-- - yarn add prisma --save-dev
 - yarn prisma
 - yarn prisma init
 - yarn add @prisma/client
+- yarn add @prisma/cli --dev -->
+
+yarn add prisma --dev
+yarn add @prisma/client
+
+# 6.CORS
+
+- yarn add --dev @types/cors
+- yarn add cors

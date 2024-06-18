@@ -13,6 +13,7 @@ import { HttpRequest } from '../http/helpers/implementations/HttpRequest'
  * @param {IController} apiRoute - The controller to handle the request.
  * @returns {Promise<IHttpResponse>} The response from the controller.
  */
+
 export async function expressAdapter(
   request: Request,
   apiRoute: IController,

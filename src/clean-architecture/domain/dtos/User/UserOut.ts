@@ -12,7 +12,7 @@ export interface IUserOutRequestDTO {
   /**
    * The name of the user.
    */
-  name: string
+  name: string | null
 
   /**
    * The email address of the user.

@@ -30,4 +30,5 @@ export class UserRepository implements IUsersRepository {
     })
     return user
   }
+
 }

@@ -1,4 +1,4 @@
-import { ICreateUserUseCase } from '../../../../../app/useCases/User/CreateUser'
+import { ICreateUserUseCase } from '../../../../../application/useCases/User/CreateUser'
 import { ResponseDTO } from '../../../../../domain/dtos/Response'
 import { IHttpErrors } from '../../../helpers/IHttpErrors'
 import { IHttpRequest } from '../../../helpers/IHttpRequest'
@@ -23,7 +23,7 @@ export class CreateUserController implements IController {
     private createUserCase: ICreateUserUseCase,
     private httpErrors: IHttpErrors = new HttpErrors(),
     private httpSuccess: IHttpSuccess = new HttpSuccess(),
-  ) {}
+  ) { }
 
   /**
    * Handles an HTTP request to create a user.
