@@ -1,7 +1,7 @@
 import { ResponseDTO } from '../../../../domain/dtos/Response';
 import { ICreateUserRequestDTO } from '../../../../domain/dtos/User/CreateUser';
 import { UserEntity } from '../../../../domain/entities/User';
-import { UserErrorType } from '../../../../domain/enums/user/ErrorType'
+import { UserErrorType } from '../../../../domain/enums/user/ErrorType';
 import { IPasswordHasher } from '../../../providers/PasswordHasher'
 import { IUsersRepository } from '../../../repositories/User'
 import { ICreateUserUseCase } from '../CreateUser'
@@ -46,16 +46,16 @@ export class CreateUserUseCase implements ICreateUserUseCase {
         password,
       })
 
-      // const userAlreadyExists = await this.userRepository.findByEmail(
-      //   userEntity.email.address,
-      // )
+      const userAlreadyExists = await this.userRepository.findByEmail(
+        userEntity.email.address,
+      )
 
-      // if (userAlreadyExists) {
-      //   return {
-      //     data: { error: UserErrorType.UserAlreadyExists },
-      //     success: false,
-      //   }
-      // }
+      if (userAlreadyExists) {
+        return {
+          data: { error: UserErrorType.UserAlreadyExists },
+          success: false,
+        }
+      }
 
       const passwordHashed = await this.passwordHasher.hashPassword(password)
       const user = await this.userRepository.create({

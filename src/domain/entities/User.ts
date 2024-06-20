@@ -30,6 +30,7 @@ export class UserEntity {
    * @param {ICreateUserRequestDTO} data - The data to create a user.
    * @returns {UserEntity} The created user instance.
    */
+
   static create({ email, name, password }: ICreateUserRequestDTO): UserEntity {
     const newEmail = new Email({ address: email })
     return new UserEntity({ name, email: newEmail, password })
@@ -42,6 +43,7 @@ export class UserEntity {
    * @param {IUpdateUserRequestDTO} updatedUser - The data to update the user.
    * @returns {IUpdateUserRequestDTO} The updated user data.
    */
+
   static update(updatedUser: IUpdateUserRequestDTO) {
     if (updatedUser.email) {
       updatedUser.email = new Email({ address: updatedUser.email }).address

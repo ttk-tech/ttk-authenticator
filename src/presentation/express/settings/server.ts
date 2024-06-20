@@ -1,6 +1,6 @@
 import { app } from './app'
-import '../../../../config/logging';
-import { server } from '../../../../config/config';
+import '../../../config/logging';
+import { server } from '../../../config/config';
 
 /**
  * Port number for the server to listen on.

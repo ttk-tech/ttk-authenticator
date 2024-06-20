@@ -24,9 +24,12 @@ export class UserRepository implements IUsersRepository {
     return user
   }
 
-  async findByEmail(email: string): Promise<IUserInRequestDTO | unknown> {
-    const user = this.prisma.user.findFirst({
-      where: { email: email }
+  async findByEmail(uEmail: string): Promise<IUserInRequestDTO | unknown> {
+    // By unique identifier
+    const user = await this.prisma.user.findFirst({
+      where: {
+        email: uEmail,
+      },
     })
     return user
   }
