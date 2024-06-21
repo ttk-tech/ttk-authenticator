@@ -5,7 +5,7 @@ import { UserErrorType } from '../../../../domain/enums/user/ErrorType';
 import { IPasswordHasher } from '../../../providers/PasswordHasher'
 import { IUsersRepository } from '../../../repositories/User'
 import { ICreateUserUseCase } from '../CreateUser'
-
+import '../../../../config/logging'
 
 /**
  * Use case for creating a new user.
@@ -51,6 +51,7 @@ export class CreateUserUseCase implements ICreateUserUseCase {
       )
 
       if (userAlreadyExists) {
+        logging.error(UserErrorType.UserAlreadyExists)
         return {
           data: { error: UserErrorType.UserAlreadyExists },
           success: false,
@@ -66,6 +67,7 @@ export class CreateUserUseCase implements ICreateUserUseCase {
 
       return { data: user, success: true }
     } catch (error: any) {
+      logging.error(error.message)
       return { data: { error: error.message }, success: false }
     }
   }

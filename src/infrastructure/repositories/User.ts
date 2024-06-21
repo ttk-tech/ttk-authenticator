@@ -9,6 +9,13 @@ import { IUserInRequestDTO } from '../../domain/dtos/User/UserIn';
 export class UserRepository implements IUsersRepository {
   constructor(private prisma: PrismaClient) { }
 
+  /**
+   * Creates a new user.
+   *
+   * @async
+   * @param {ICreateUserRequestDTO} data - The user data.
+   * @returns {Promise<IUserOutRequestDTO>} The created user.
+   */
   async create({
     email,
     name,
@@ -24,11 +31,17 @@ export class UserRepository implements IUsersRepository {
     return user
   }
 
-  async findByEmail(uEmail: string): Promise<IUserInRequestDTO | unknown> {
-    // By unique identifier
+  /**
+   * Find user by email.
+   *
+   * @async
+   * @param {userEmail} string - The user email data.
+   * @returns {Promise<IUserOutRequestDTO> | unknown s} The created user.
+   */
+  async findByEmail(userEmail: string): Promise<IUserInRequestDTO | unknown> {
     const user = await this.prisma.user.findFirst({
       where: {
-        email: uEmail,
+        email: userEmail
       },
     })
     return user

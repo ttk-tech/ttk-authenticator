@@ -2,12 +2,12 @@ import http from 'http';
 import express from 'express';
 import mongoose from 'mongoose';
 import './config/logging';
-import { mongo, server } from './config/config';
+import { mongo, server } from '../config/config';
 
 export const application = express();
 export let httpServer: ReturnType<typeof http.createServer>;
 
-import userRoutes from './traditional/routes/user-route'
+import userRoutes from './routes/user-route'
 
 export const Main = async () => {
     // server connection

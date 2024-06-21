@@ -10,10 +10,16 @@ import { server } from '../../../config/config';
 /**
  * Start the server and listen on the specified port.
  */
-app.listen(server.SERVER_PORT || 3000, () => {
+
+app.listen(server.SERVER_PORT, () => {
   logging.log('----------------------------------------');
   logging.log(`🚀 ${server.SERVER_HOSTNAME} server started on ${server.SERVER_PORT}`);
   logging.log('----------------------------------------');
 })
 
-
+/**
+ * Check server health - get method.
+ */
+app.get(`/${server.SERVER_HOSTNAME}/health-check`, (req, res, next) => {
+  return res.status(200).json({ hello: 'TTK Authenticator! 🚀' });
+});
