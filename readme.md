@@ -20,8 +20,10 @@
 
 # 5.Prisma -
 
-yarn add prisma --dev
-yarn add @prisma/client
+- yarn add prisma --dev
+- npx prisma init
+- yarn add @prisma/client
+- npx prisma generate
 
 # 6.CORS
 

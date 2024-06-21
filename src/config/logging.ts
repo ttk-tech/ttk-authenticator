@@ -62,7 +62,7 @@ export function info(message?: any, ...optionalParams: any[]) {
     console.info(
       `[${new Date().toLocaleString()}]`,
       colours.fg.cyan,
-      '[INFO]',
+      '[SEVER-INFO]',
       colours.reset,
       colours.bg.green,
       `[${getCallingFunction(new Error())}]`,
@@ -77,7 +77,7 @@ export function warn(message?: any, ...optionalParams: any[]) {
     console.warn(
       `[${new Date().toLocaleString()}]`,
       colours.fg.yellow,
-      '[WARN]',
+      '[SERVER-WARN]',
       colours.reset,
       colours.bg.green,
       `[${getCallingFunction(new Error())}]`,
@@ -92,7 +92,7 @@ export function error(message?: any, ...optionalParams: any[]) {
     console.error(
       `[${new Date().toLocaleString()}]`,
       colours.fg.red,
-      '[ERROR]',
+      '[SEVER-ERROR]',
       colours.reset,
       colours.bg.green,
       `[${getCallingFunction(new Error())}]`,
