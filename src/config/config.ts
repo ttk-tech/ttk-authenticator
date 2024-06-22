@@ -10,7 +10,7 @@ export const MONGO_URL = process.env.MONGO_URL || '';
 export const MONGO_DATABASE = process.env.MONGO_DATABASE || '';
 export const MONGO_OPTIONS: mongoose.ConnectOptions = { retryWrites: true, w: 'majority' };
 export const SERVER_HOSTNAME = process.env.SERVER_HOSTNAME || 'localhost';
-export const SERVER_PORT = process.env.SERVER_PORT || 1234;
+export const SERVER_PORT = process.env.SERVER_PORT || 3000;
 
 
 export const mongo = {

@@ -1,9 +1,9 @@
-import { IUserInRequestDTO } from './../../../../domain/dtos/User/UserIn';
-import { IGetOneUserUseCase } from "../GetOneUser";
-import { ResponseDTO } from "../../../../domain/dtos/Response";
-import { IUsersRepository } from "../../../repositories/User";
-import { UserErrorType } from "../../../../domain/enums/user/ErrorType";
-import '../../../../config/logging'
+import { IUserInRequestDTO } from "@domain/dtos/User/UserIn";
+import { IGetOneUserUseCase } from "@application/useCases/User/GetOneUser";
+import { ResponseDTO } from "@domain/dtos/Response";
+import { IUsersRepository } from "@repositories/User";
+import { UserErrorType } from "@domain/enums/user/ErrorType";
+import logging from "@config/logging";
 
 
 /**
