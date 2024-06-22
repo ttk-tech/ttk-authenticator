@@ -11,4 +11,4 @@ const cleanup = tsConfigPaths.register({
 require('./dist/presentation/express/settings/server.js');
 
 // Optionally, you can cleanup the tsconfig-paths registration when your app shuts down
-// cleanup();
+cleanup();
