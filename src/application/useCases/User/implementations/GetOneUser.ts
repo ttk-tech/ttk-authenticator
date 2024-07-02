@@ -41,6 +41,7 @@ export class GetOneUserUseCase implements IGetOneUserUseCase {
       }
       /**
        * remove password from user for public data response
+       * warning: hard code - should be returned by dto response
        */
       const publicUser = {
         id: user.id,
