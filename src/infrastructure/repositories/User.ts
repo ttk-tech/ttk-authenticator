@@ -37,13 +37,18 @@ export class UserRepository implements IUsersRepository {
    *
    * @async
    * @param {userEmail} string - The user email data.
-   * @returns {Promise<IUserOutRequestDTO> | unknown s} return user data.
+   * @returns {Promise<IUserOutRequestDTO> | unknown } return user data.
    */
-  async findByEmail(userEmail: string): Promise<IUserInRequestDTO | unknown> {
+  async findByEmail(userEmail: string): Promise<IUserOutRequestDTO | unknown> {
     const user = await this.prisma.user.findFirst({
       where: {
         email: userEmail
       },
+      select: {
+        name: true,
+        email: true,
+        password: false // not return password at public api
+      }
     })
     return user
   }
@@ -58,7 +63,8 @@ export class UserRepository implements IUsersRepository {
   async findById(userID: string): Promise<IUserOutRequestDTO | unknown> {
     const user = await this.prisma.user.findFirst({
       where: {
-        id: userID
+        // update email -> id when authenticated feature is enabled
+        email: userID
       },
     })
     return user
@@ -87,7 +93,5 @@ export class UserRepository implements IUsersRepository {
     })
     return updateUser
   }
-
-
 
 }

@@ -28,18 +28,21 @@ export class UpdateUserUseCase implements IUpdateUserUseCase {
 
 
   async execute(
-    userID: string,
+    // userID: string,
+    // hard code update by email 
+    // => implement update by id when authenticated feature enabled
+    userEmail: string,
     { name, email, password }: IUpdateUserRequestDTO): Promise<ResponseDTO> {
     try {
-      const user = (await this.userRepository.findById(userID)) as IUserOutRequestDTO | null
+      const user = (await this.userRepository.findById(userEmail)) as IUserOutRequestDTO | null
       if (!user) {
         return {
           data: { error: UserErrorType.UserDoesNotExist },
           success: false,
         }
       }
-      // implementation logic code to update
-      return { data: "update successfully", success: true };
+      const updatedUser = await this.userRepository.update(user, { name, email, password })
+      return { data: updatedUser, success: true };
     } catch (error: any) {
       logging.error(error)
       return { data: { error: error.message }, success: false }
