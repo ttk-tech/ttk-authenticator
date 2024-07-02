@@ -4,6 +4,7 @@ import { IUpdateUserUseCase } from "../UpdateUser";
 import { IUsersRepository } from "../../../repositories/User";
 import { ResponseDTO } from '@domain/dtos/Response';
 import { UserErrorType } from '@domain/enums/user/ErrorType';
+import { IPasswordHasher } from "../../../providers/PasswordHasher";
 import logging from "@config/logging";
 
 
@@ -22,9 +23,13 @@ export class UpdateUserUseCase implements IUpdateUserUseCase {
    * 
    * @constructor
    * @param {IUserRepository} userReposistory - The repository for user data
+   * 
    */
 
-  constructor(private userRepository: IUsersRepository) { }
+  constructor(
+    private userRepository: IUsersRepository,
+    private passwordHasher: IPasswordHasher
+  ) { }
 
 
   async execute(
@@ -40,6 +45,9 @@ export class UpdateUserUseCase implements IUpdateUserUseCase {
           data: { error: UserErrorType.UserDoesNotExist },
           success: false,
         }
+      }
+      if (password) {
+        password = await this.passwordHasher.hashPassword(password)
       }
       const updatedUser = await this.userRepository.update(user, { name, email, password })
       return { data: updatedUser, success: true };
