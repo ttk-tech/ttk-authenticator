@@ -1,4 +1,4 @@
-import { ResponseDTO } from "../../../domain/dtos/Response"
+import { ResponseDTO } from "@domain/dtos/Response"
 
 export interface IGetOneUserUseCase {
   /**

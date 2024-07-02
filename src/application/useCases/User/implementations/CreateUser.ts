@@ -1,11 +1,11 @@
-import { ResponseDTO } from '../../../../domain/dtos/Response';
-import { ICreateUserRequestDTO } from '../../../../domain/dtos/User/CreateUser';
-import { UserEntity } from '../../../../domain/entities/User';
-import { UserErrorType } from '../../../../domain/enums/user/ErrorType';
+import { ResponseDTO } from '@domain/dtos/Response';
+import { ICreateUserRequestDTO } from '@domain/dtos/User/CreateUser';
+import { UserEntity } from '@domain/entities/User';
+import { UserErrorType } from '@domain/enums/user/ErrorType';
 import { IPasswordHasher } from '../../../providers/PasswordHasher'
 import { IUsersRepository } from '../../../repositories/User'
 import { ICreateUserUseCase } from '../CreateUser'
-import '../../../../config/logging'
+import "@config/logging"
 
 /**
  * Use case for creating a new user.

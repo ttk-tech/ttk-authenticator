@@ -1,4 +1,3 @@
-import { IUserInRequestDTO } from "@domain/dtos/User/UserIn";
 import { IGetOneUserUseCase } from "@application/useCases/User/GetOneUser";
 import { ResponseDTO } from "@domain/dtos/Response";
 import { IUsersRepository } from "@repositories/User";
@@ -31,7 +30,7 @@ export class GetOneUserUseCase implements IGetOneUserUseCase {
 
   async execute(userEmail: string): Promise<ResponseDTO> {
     try {
-      const user = await this.userRepository.findByEmail(userEmail) as IUserInRequestDTO | null;
+      const user = await this.userRepository.findByEmail(userEmail);
       if (!user) {
         logging.error(UserErrorType.UserNotFound)
         return {
@@ -39,15 +38,7 @@ export class GetOneUserUseCase implements IGetOneUserUseCase {
           success: false
         }
       }
-      /**
-       * remove password from user for public data response
-       */
-      const publicUser = {
-        id: user.id,
-        email: user.email,
-        name: user.name
-      };
-      return { data: publicUser, success: true };
+      return { data: user, success: true };
     } catch (error: any) {
       logging.error(error)
       return { data: { error: error.message }, success: false }
