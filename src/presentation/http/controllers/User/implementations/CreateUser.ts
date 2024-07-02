@@ -1,5 +1,6 @@
-import { ICreateUserUseCase } from '../../../../../application/useCases/User/CreateUser'
-import { ResponseDTO } from '../../../../../domain/dtos/Response'
+import { ICreateUserUseCase } from '@application/useCases/User/CreateUser'
+import { ResponseDTO } from '@domain/dtos/Response'
+
 import { IHttpErrors } from '../../../helpers/IHttpErrors'
 import { IHttpRequest } from '../../../helpers/IHttpRequest'
 import { IHttpResponse } from '../../../helpers/IHttpResponse'

@@ -1,19 +1,20 @@
-import { IGetOneUserUseCase } from './../../../../../application/useCases/User/GetOneUser';
+import { IGetOneUserUseCase } from '@application/useCases/User/GetOneUser';
+import { ResponseDTO } from '@domain/dtos/Response';
+
 import { HttpSuccess } from './../../../helpers/implementations/HttpSuccess';
 import { HttpErrors } from './../../../helpers/implementations/HttpErrors';
-import { IController } from '../../IController';
 import { IHttpRequest } from '../../../helpers/IHttpRequest';
 import { IHttpResponse } from '../../../helpers/IHttpResponse';
 import { IHttpErrors } from '../../../helpers/IHttpErrors';
-import { ResponseDTO } from '../../../../../domain/dtos/Response';
 import { HttpResponse } from '../../../helpers/implementations/HttpResponse';
 import { IHttpSuccess } from '../../../helpers/IHttpSuccess';
+
+import { IController } from '../../IController';
 
 
 /**
  * Controller for handling requests to get a user.
- */
-
+*/
 export class GetOneUserController implements IController {
   /**
    * Creates an instance of GetOneUserController.

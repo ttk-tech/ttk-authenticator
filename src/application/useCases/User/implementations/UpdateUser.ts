@@ -1,11 +1,15 @@
-import { IUpdateUserRequestDTO } from './../../../../domain/dtos/User/UpdateUser';
+import { IUpdateUserRequestDTO } from '@domain/dtos/User/UpdateUser';
 import { IUserOutRequestDTO } from "@domain/dtos/User/UserOut";
-import { IUpdateUserUseCase } from "../UpdateUser";
-import { IUsersRepository } from "../../../repositories/User";
 import { ResponseDTO } from '@domain/dtos/Response';
 import { UserErrorType } from '@domain/enums/user/ErrorType';
+import { UserEntity } from '@domain/entities/User';
+
+import { IUpdateUserUseCase } from "../UpdateUser";
+import { IUsersRepository } from "../../../repositories/User";
 import { IPasswordHasher } from "../../../providers/PasswordHasher";
-import logging from "@config/logging";
+
+import "@config/logging";
+
 
 
 
@@ -40,7 +44,11 @@ export class UpdateUserUseCase implements IUpdateUserUseCase {
     { name, email, password }: IUpdateUserRequestDTO): Promise<ResponseDTO> {
     try {
       const user = (await this.userRepository.findById(userEmail)) as IUserOutRequestDTO | null
+
+      // const user = (await this.userRepository.findById(userEmail))
+
       if (!user) {
+        logging.error(UserErrorType.UserDoesNotExist)
         return {
           data: { error: UserErrorType.UserDoesNotExist },
           success: false,
@@ -49,7 +57,38 @@ export class UpdateUserUseCase implements IUpdateUserUseCase {
       if (password) {
         password = await this.passwordHasher.hashPassword(password)
       }
-      const updatedUser = await this.userRepository.update(user, { name, email, password })
+
+      // check email is available
+      let userAlreadyExists
+
+      if (email) {
+        userAlreadyExists = await this.userRepository.findByEmail(email)
+      }
+
+      if (userAlreadyExists) {
+        logging.error(UserErrorType.UserAlreadyExists)
+        return {
+          data: { error: UserErrorType.UserAlreadyExists },
+          success: false,
+        }
+      }
+
+      // use user entity to format user data (email parameter)
+      const userEntity = UserEntity.update({ name, email, password })
+
+      const updatedUser = await this.userRepository.update(
+        user,
+        {
+          name: userEntity.name,
+          email: userEntity.email,
+          password: userEntity.password
+        }
+      )
+      // log error when update failed 
+      if (!updatedUser) {
+        logging.error(UserErrorType.UserUpdateFailure)
+      }
+
       return { data: updatedUser, success: true };
     } catch (error: any) {
       logging.error(error)

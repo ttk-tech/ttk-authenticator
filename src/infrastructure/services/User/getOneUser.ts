@@ -1,10 +1,15 @@
-import { IController } from './../../../presentation/http/controllers/IController';
-import { IUsersRepository } from '../../../application/repositories/User';
+import { IController } from '@presentation/http/controllers/IController';
+import { GetOneUserController } from '@presentation/http/controllers/User/implementations/GetOneUser';
+
+import { IUsersRepository } from '@application/repositories/User';
+import { IGetOneUserUseCase } from '@application/useCases/User/GetOneUser';
+import { GetOneUserUseCase } from '@application/useCases/User/implementations/GetOneUser';
+
 import { UserRepository } from '../../repositories/User';
 import { prismaClient } from '../../databases/connection';
-import { IGetOneUserUseCase } from '../../../application/useCases/User/GetOneUser';
-import { GetOneUserUseCase } from '../../../application/useCases/User/implementations/GetOneUser';
-import { GetOneUserController } from '../../../presentation/http/controllers/User/implementations/GetOneUser';
+
+
+
 
 /**
  * Composer function for getting and configuring the components required for getting user.
