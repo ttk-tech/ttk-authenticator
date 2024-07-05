@@ -1,5 +1,6 @@
 import { IUpdateUserUseCase } from "@application/useCases/User/UpdateUser";
 import { IController } from "../../IController";
+import { ResponseDTO } from "@domain/dtos/Response";
 
 import { IHttpErrors } from '../../../helpers/IHttpErrors';
 import { IHttpSuccess } from './../../../helpers/IHttpSuccess';
@@ -27,9 +28,14 @@ export class UpdateUserController implements IController {
     private httpSuccess: IHttpSuccess = new HttpSuccess()
   ) { }
 
+  /**
+   * Handles an HTTP request to update a user.
+   * @param httpRequest The HTTP request to handle.
+   * @returns A promise that resolves to an HTTP response.
+   */
   async handle(httpRequest: HttpRequest): Promise<IHttpResponse> {
     let error
-    let response
+    let response: ResponseDTO
 
     if (httpRequest.path && httpRequest.body && Object.keys(httpRequest.body).length > 0) {
       const bodyParams = Object.keys(httpRequest.body)
@@ -59,7 +65,7 @@ export class UpdateUserController implements IController {
         error = this.httpErrors.error_400()
         return new HttpResponse(error.statusCode, error.body)
       }
-
+      // update user succeeded return a 201
       const success = this.httpSuccess.success_200(response.data)
       return new HttpResponse(success.statusCode, success.body)
     }

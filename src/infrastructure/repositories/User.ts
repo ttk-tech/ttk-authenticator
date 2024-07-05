@@ -71,7 +71,7 @@ export class UserRepository implements IUsersRepository {
   }
 
   /**
-   * Find user by email
+   * Update user by id
    * 
    * @async 
    * @param {userID} string - The user id
@@ -81,6 +81,7 @@ export class UserRepository implements IUsersRepository {
     user: IUserOutRequestDTO,
     { email, name, password }: IUpdateUserRequestDTO
   ): Promise<IUserOutRequestDTO> {
+    let response: IUserOutRequestDTO
     const updateUser = await this.prisma.user.update({
       where: {
         id: user.id
