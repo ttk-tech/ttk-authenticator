@@ -10,18 +10,15 @@ import { IPasswordHasher } from "../../../providers/PasswordHasher";
 
 import "@config/logging";
 
-
-
-
 /**
  * use case for updating user data
  * 
  * @class
- * @implements {IUpdateUserUseCase} - The user update request data
- * @return {Promise<ResponseDTO>} - The response data
+ * @implements {IUpdateUserUseCase}
  */
 
 export class UpdateUserUseCase implements IUpdateUserUseCase {
+
   /**
    * Create an instance of the UpdateUserUseCase.
    * 
@@ -37,23 +34,15 @@ export class UpdateUserUseCase implements IUpdateUserUseCase {
 
 
   async execute(
-    // userID: string,
-    // hard code update by email 
-    // => implement update by id when authenticated feature enabled
-    userEmail: string,
+    userID: string,
     { name, email, password }: IUpdateUserRequestDTO): Promise<ResponseDTO> {
     try {
-      const user = (await this.userRepository.findById(userEmail)) as IUserOutRequestDTO | null
-
-      // const user = (await this.userRepository.findById(userEmail))
-
+      const user = (await this.userRepository.findById(userID)) as IUserOutRequestDTO | null
       if (!user) {
         logging.error(UserErrorType.UserDoesNotExist)
-        return {
-          data: { error: UserErrorType.UserDoesNotExist },
-          success: false,
-        }
+        return { data: { error: UserErrorType.UserDoesNotExist }, success: false }
       }
+
       if (password) {
         password = await this.passwordHasher.hashPassword(password)
       }
@@ -67,10 +56,7 @@ export class UpdateUserUseCase implements IUpdateUserUseCase {
 
       if (userAlreadyExists) {
         logging.error(UserErrorType.UserAlreadyExists)
-        return {
-          data: { error: UserErrorType.UserAlreadyExists },
-          success: false,
-        }
+        return { data: { error: UserErrorType.UserAlreadyExists }, success: false }
       }
 
       // use user entity to format user data (email parameter)
@@ -88,8 +74,8 @@ export class UpdateUserUseCase implements IUpdateUserUseCase {
       if (!updatedUser) {
         logging.error(UserErrorType.UserUpdateFailure)
       }
-
       return { data: updatedUser, success: true };
+
     } catch (error: any) {
       logging.error(error)
       return { data: { error: error.message }, success: false }
