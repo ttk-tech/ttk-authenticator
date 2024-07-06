@@ -24,7 +24,6 @@ export class UpdateUserUseCase implements IUpdateUserUseCase {
    * 
    * @constructor
    * @param {IUserRepository} userReposistory - The repository for user data
-   * 
    */
 
   constructor(

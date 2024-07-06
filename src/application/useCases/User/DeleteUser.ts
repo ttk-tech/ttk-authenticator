@@ -12,8 +12,7 @@ export interface IDeleteUserUseCase {
    * 
    * @async 
    * @param {string} userID - ID of the user
-   * @returns {Promise<void>} - the void message
-   * 
+   * @returns {Promise<ResponseDTO>} - response dto
   */
 
   execute(userID: string): Promise<ResponseDTO>

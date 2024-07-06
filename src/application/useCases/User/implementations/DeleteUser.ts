@@ -18,10 +18,23 @@ import "@config/logging";
 
 export class DeleteUserUseCase implements IDeleteUserUseCase {
 
+  /**
+ * Creates an instance of DeleteUserUseCase.
+ *
+ * @constructor
+ * @param {IUsersRepository} userRepository - The repository for user data.
+ */
   constructor(
     private userRepository: IUsersRepository
   ) { }
 
+  /**
+  * Executes the create user use case.
+   *
+  * @async
+  * @param {string} userID - The user creation request data.
+  * @returns {Promise<ResponseDTO>} The response data.
+  */
   async execute(userID: string): Promise<ResponseDTO> {
     try {
       const userAlreadyExists = await this.userRepository.findById(userID);
