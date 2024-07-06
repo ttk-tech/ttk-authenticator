@@ -1,5 +1,4 @@
 import { app } from './app'
-// import '../../../config/logging';
 import '@config/logging'
 import { server } from '@config/config';
 

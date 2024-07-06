@@ -1,3 +1,4 @@
+import { ResponseDTO } from '@domain/dtos/Response';
 import { PaginationDTO } from '../../domain/dtos/Pagination';
 import { ICreateUserRequestDTO } from '../../domain/dtos/User/CreateUser';
 import { IUpdateUserRequestDTO } from '../../domain/dtos/User/UpdateUser';
@@ -51,7 +52,16 @@ export interface IUsersRepository {
    */
   findById(id: string): Promise<IUserInRequestDTO | unknown>
 
+  /**
+   * Deletes a user by their ID.
+   * 
+   * @async 
+   * @param {string} id - The ID of the user
+   * @returns {Promise<ResponseDTO>} The message was successfully deleted
+   */
+  delete(id: string): Promise<ResponseDTO>
+
 
   // findAll(pageNumber: number): Promise<PaginationDTO>
-  // delete(id: string): Promise<void>
+
 }

@@ -2,7 +2,11 @@ import { IUpdateUserRequestDTO } from "@domain/dtos/User/UpdateUser";
 import { IUserOutRequestDTO } from "@domain/dtos/User/UserOut";
 import { ResponseDTO } from "@domain/dtos/Response";
 
-
+/**
+ * Interface for the use case of update user's data.
+ *
+ * @interface
+ */
 
 export interface IUpdateUserUseCase {
   /**

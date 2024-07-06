@@ -1,8 +1,10 @@
 import { Request, Response, Router } from 'express'
-
-import { createUserComposer } from '../../../infrastructure/services/User/createUser';
 import { expressAdapter } from '../../adapters/express'
-import { getOneUserComposer } from '../../../infrastructure/services/User/getOneUser';
+
+import { createUserComposer } from '@infrastructure/services/User/createUser';
+import { getOneUserComposer } from '@infrastructure/services/User/getOneUser';
+import { updateUserComposer } from '@infrastructure/services/User/updateUser';
+import { userDeleteComposer } from '@infrastructure/services/User/deleteUser';
 
 /**
  * Router for handling user-related routes.
@@ -22,6 +24,23 @@ userRoutes.post('/', async (request: Request, response: Response) => {
  */
 userRoutes.get('/getOne', async (request: Request, response: Response) => {
   const adapter = await expressAdapter(request, getOneUserComposer())
+  return response.status(adapter.statusCode).json(adapter.body)
+})
+
+/**
+ * Endpoint to update user
+ */
+userRoutes.put('/:id', async (request: Request, response: Response) => {
+  const adapter = await expressAdapter(request, updateUserComposer())
+  return response.status(adapter.statusCode).json(adapter.body)
+})
+
+
+/**
+ * Endpoint to delete user
+ */
+userRoutes.delete('/:id', async (request: Request, response: Response) => {
+  const adapter = await expressAdapter(request, userDeleteComposer())
   return response.status(adapter.statusCode).json(adapter.body)
 })
 

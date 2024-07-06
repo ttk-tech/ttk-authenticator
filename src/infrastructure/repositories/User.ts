@@ -1,3 +1,4 @@
+import { ResponseDTO } from "@domain/dtos/Response"
 import { IUsersRepository } from '@application/repositories/User';
 import { PrismaClient } from '@prisma/client';
 import { ICreateUserRequestDTO } from '@domain/dtos/User/CreateUser';
@@ -5,7 +6,7 @@ import { IUserOutRequestDTO } from '@domain/dtos/User/UserOut';
 import { IUserInRequestDTO } from '@domain/dtos/User/UserIn';
 import { IUpdateUserRequestDTO } from '@domain/dtos/User/UpdateUser';
 // import { PaginationDTO } from '../../domain/dtos/Pagination';
-// import { IUpdateUserRequestDTO } from './../../domain/dtos/User/UpdateUser';
+
 
 export class UserRepository implements IUsersRepository {
   constructor(private prisma: PrismaClient) { }
@@ -63,15 +64,14 @@ export class UserRepository implements IUsersRepository {
   async findById(userID: string): Promise<IUserOutRequestDTO | unknown> {
     const user = await this.prisma.user.findFirst({
       where: {
-        // update email -> id when authenticated feature is enabled
-        email: userID
+        id: userID
       },
     })
     return user
   }
 
   /**
-   * Find user by email
+   * Update user by id
    * 
    * @async 
    * @param {userID} string - The user id
@@ -81,6 +81,7 @@ export class UserRepository implements IUsersRepository {
     user: IUserOutRequestDTO,
     { email, name, password }: IUpdateUserRequestDTO
   ): Promise<IUserOutRequestDTO> {
+    let response: IUserOutRequestDTO
     const updateUser = await this.prisma.user.update({
       where: {
         id: user.id
@@ -94,4 +95,20 @@ export class UserRepository implements IUsersRepository {
     return updateUser
   }
 
+  /**
+   * 
+   * @async 
+   * @param {userID} string - The user ID
+   * @returns {Promise<ResponseDTO>
+   */
+  async delete(userID: string): Promise<ResponseDTO> {
+    const deleteUser = await this.prisma.user.delete({
+      where: {
+        id: userID,
+      },
+    })
+    return {
+      data: deleteUser, success: true
+    }
+  }
 }
