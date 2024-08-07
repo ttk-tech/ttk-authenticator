@@ -62,6 +62,6 @@ export interface IUsersRepository {
   delete(id: string): Promise<ResponseDTO>
 
 
-  // findAll(pageNumber: number): Promise<PaginationDTO>
+  findAll(): Promise<ResponseDTO>
 
 }
