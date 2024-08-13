@@ -59,7 +59,6 @@ export class GetOneUserController implements IController {
       return new HttpResponse(success.statusCode, success.body)
     }
 
-
     // Invalid request body, return a 500 Internal Server Error
     error = this.httpErrors.error_500()
     return new HttpResponse(error.statusCode, error.body)

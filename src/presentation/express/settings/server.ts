@@ -1,3 +1,4 @@
+import {Request, Response} from 'express'
 import { app } from './app'
 import '@config/logging'
 import { server } from '@config/config';
@@ -9,8 +10,8 @@ import { server } from '@config/config';
 
 /**
  * Start the server and listen on the specified port.
+ * Log internal message
  */
-
 app.listen(server.SERVER_PORT, () => {
   logging.log('----------------------------------------');
   logging.log(`🚀 ${server.SERVER_HOSTNAME} server started on ${server.SERVER_PORT}`);
@@ -19,7 +20,9 @@ app.listen(server.SERVER_PORT, () => {
 
 /**
  * Check server health - get method.
+ * 
+ * @returns {string} - alert healthy message
  */
-app.get(`/${server.SERVER_HOSTNAME}/health-check`, (req, res, next) => {
-  return res.status(200).json({ hello: 'TTK Authenticator! 🚀' });
+app.get(`/${server.SERVER_HOSTNAME}/health-check`, (request: Request, response: Response) => {
+  return response.status(200).json({ hello: 'TTK Authenticator! 🚀' });
 });

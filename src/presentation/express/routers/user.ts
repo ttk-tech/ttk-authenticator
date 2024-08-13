@@ -53,12 +53,4 @@ userRoutes.get('/getAll', async (request: Request, response: Response) => {
   return response.status(adapter.statusCode).json(adapter.body)
 })
 
-// userRoutes.get(
-//   '/',
-//   async (request: Request, response: Response) => {
-//     const adapter = await expressAdapter(request, getUserComposer())
-//     return response.status(adapter.statusCode).json(adapter.body)
-//   },
-// )
-
 export { userRoutes }
