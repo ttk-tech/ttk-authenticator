@@ -55,7 +55,7 @@ export class UserRepository implements IUsersRepository {
   }
 
   /**
-   * Find user by email
+   * Find user by id
    * 
    * @async 
    * @param {userID} string - The user id
@@ -96,6 +96,7 @@ export class UserRepository implements IUsersRepository {
   }
 
   /**
+   * Delete user by id
    * 
    * @async 
    * @param {userID} string - The user ID
