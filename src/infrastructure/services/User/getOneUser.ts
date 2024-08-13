@@ -9,8 +9,6 @@ import { UserRepository } from '../../repositories/User';
 import { prismaClient } from '../../databases/connection';
 
 
-
-
 /**
  * Composer function for getting and configuring the components required for getting user.
  *

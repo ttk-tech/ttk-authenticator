@@ -5,6 +5,7 @@ import { createUserComposer } from '@infrastructure/services/User/createUser';
 import { getOneUserComposer } from '@infrastructure/services/User/getOneUser';
 import { updateUserComposer } from '@infrastructure/services/User/updateUser';
 import { userDeleteComposer } from '@infrastructure/services/User/deleteUser';
+import { getAllUserComposer } from '@infrastructure/services/User/getAllUser';
 
 /**
  * Router for handling user-related routes.
@@ -41,6 +42,14 @@ userRoutes.put('/:id', async (request: Request, response: Response) => {
  */
 userRoutes.delete('/:id', async (request: Request, response: Response) => {
   const adapter = await expressAdapter(request, userDeleteComposer())
+  return response.status(adapter.statusCode).json(adapter.body)
+})
+
+/**
+ * Endpoint to get all user.
+ */
+userRoutes.get('/getAll', async (request: Request, response: Response) => {
+  const adapter = await expressAdapter(request, getAllUserComposer())
   return response.status(adapter.statusCode).json(adapter.body)
 })
 

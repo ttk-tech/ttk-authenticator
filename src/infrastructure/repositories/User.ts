@@ -112,4 +112,12 @@ export class UserRepository implements IUsersRepository {
       data: deleteUser, success: true
     }
   }
+
+  async findAll(): Promise<ResponseDTO> {
+    const userList = await this.prisma.user.findMany()
+    return {
+      data: userList,
+      success: true
+    }
+  }
 }
