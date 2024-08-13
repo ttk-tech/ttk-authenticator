@@ -61,7 +61,12 @@ export interface IUsersRepository {
    */
   delete(id: string): Promise<ResponseDTO>
 
-
+  /**
+   * Find all users.
+   * 
+   * @async 
+   * @returns {Promise<ResponseDTO>} The found user list data, or undefined if not found
+   */
   findAll(): Promise<ResponseDTO>
 
 }

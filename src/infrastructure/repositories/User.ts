@@ -48,7 +48,7 @@ export class UserRepository implements IUsersRepository {
       select: {
         name: true,
         email: true,
-        password: false // not return password at public api
+        password: false
       }
     })
     return user
@@ -100,7 +100,7 @@ export class UserRepository implements IUsersRepository {
    * 
    * @async 
    * @param {userID} string - The user ID
-   * @returns {Promise<ResponseDTO>
+   * @returns {Promise<ResponseDTO>}
    */
   async delete(userID: string): Promise<ResponseDTO> {
     const deleteUser = await this.prisma.user.delete({
@@ -109,12 +109,28 @@ export class UserRepository implements IUsersRepository {
       },
     })
     return {
-      data: deleteUser, success: true
+      data: deleteUser,
+      success: true
     }
   }
 
+  /**
+   * Get all users  
+   * NOTE: Skip the offset pagination result at this time (data is too small)
+   * 
+   * 
+   * @async 
+   * @returns {Promise<ResponseDTO>
+   */
   async findAll(): Promise<ResponseDTO> {
-    const userList = await this.prisma.user.findMany()
+    const userList = await this.prisma.user.findMany({
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        password: false
+      }
+    })
     return {
       data: userList,
       success: true
