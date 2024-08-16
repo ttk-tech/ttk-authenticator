@@ -9,6 +9,7 @@ import { IAuthenticateUserDTO } from '@domain/dtos/Authenticate/AuthenticateUser
 import { AuthenticateErrorTypes } from '@domain/enums/Authenticate/ErrorType';
 import { IUserInRequestDTO } from '@domain/dtos/User/UserIn';
 
+import "@config/logging"
 export class AuthenticateUserUseCase implements IAuthenticateUserUseCase {
 
   constructor(
@@ -30,6 +31,7 @@ export class AuthenticateUserUseCase implements IAuthenticateUserUseCase {
         }
       }
 
+
       const passwordCorrect = await this.passwordHasher.comparePasswords(
         password,
         user.password
@@ -43,6 +45,8 @@ export class AuthenticateUserUseCase implements IAuthenticateUserUseCase {
       }
 
       const token = await this.tokenManager.generateToken(user.id)
+
+
       const existToken = await this.refreshTokenRepository.findByUserID(user.id)
 
       if (existToken) {
@@ -50,10 +54,12 @@ export class AuthenticateUserUseCase implements IAuthenticateUserUseCase {
       }
 
       const refreshToken = await this.refreshTokenRepository.create(user.id)
+
       return { data: { token, refreshToken, user }, success: true }
 
     }
     catch (error: any) {
+      logging.error(error.message)
       return { data: { error: error.message }, success: false };
     }
   }

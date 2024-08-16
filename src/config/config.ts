@@ -11,6 +11,7 @@ export const MONGO_DATABASE = process.env.MONGO_DATABASE || '';
 export const MONGO_OPTIONS: mongoose.ConnectOptions = { retryWrites: true, w: 'majority' };
 export const SERVER_HOSTNAME = process.env.SERVER_HOSTNAME || 'localhost';
 export const SERVER_PORT = process.env.SERVER_PORT || 3000;
+export const SECRET_KEY = process.env.SECRET_KEY || '';
 
 
 export const mongo = {
@@ -26,5 +27,6 @@ export const server = {
   TEST,
   DEVELOPMENT,
   SERVER_HOSTNAME,
-  SERVER_PORT
+  SERVER_PORT,
+  SECRET_KEY
 }

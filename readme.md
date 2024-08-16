@@ -29,3 +29,7 @@
 
 - yarn add --dev @types/cors
 - yarn add cors
+
+# 7. JSON Web Token
+
+- yarn add json-web-token
