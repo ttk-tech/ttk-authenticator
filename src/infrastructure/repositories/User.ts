@@ -46,9 +46,10 @@ export class UserRepository implements IUsersRepository {
         email: userEmail
       },
       select: {
+        id: true,
         name: true,
         email: true,
-        password: false
+        password: true
       }
     })
     return user

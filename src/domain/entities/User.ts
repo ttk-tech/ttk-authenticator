@@ -56,15 +56,24 @@ export class UserEntity {
    *
    * @readonly
    */
-
   get name(): string {
     return this._name
   }
 
+  /**
+   * Gets the user's email.
+   *
+   * @readonly
+   */
   get email(): Email {
     return this._email
   }
 
+  /**
+   * Gets the user's password.
+   *
+   * @readonly
+   */
   get password(): string {
     return this._password
   }
@@ -75,7 +84,6 @@ export class UserEntity {
    * @constructor
    * @param {UserInterface} props - The properties of the user.
    */
-
   constructor(props: UserInterface) {
     this._name = props.name
     this._password = props.password
