@@ -1,6 +1,8 @@
 import { ITokenManagerProvider } from '@application/providers/TokenManager';
-import { sign } from "jsonwebtoken"
+import { sign, verify } from "jsonwebtoken"
 import { server } from '@config/config'
+import "@config/logging";
+
 
 
 export class TokenManager implements ITokenManagerProvider {
@@ -9,7 +11,7 @@ export class TokenManager implements ITokenManagerProvider {
     const secretKey = server.SECRET_KEY
 
     if (!secretKey) {
-      throw new Error('API_SECRET is missing in the environment variables.')
+      throw new Error('SECRET_KEY is missing in the environment variables.')
     }
 
     const generatedToken = sign({}, secretKey, {
@@ -23,8 +25,15 @@ export class TokenManager implements ITokenManagerProvider {
     return true
   }
 
-  validateToken(token: string): boolean {
-    return true
+   validateToken(token: string): boolean {
+    try {
+      const secretKey = server.SECRET_KEY
+      verify(token, secretKey)
+      return true
+    } catch (error: any) {
+      logging.error(error.message)
+      return false
+    }
   }
 
 }

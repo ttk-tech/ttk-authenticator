@@ -17,7 +17,7 @@ import "@config/logging";
 
 export class DeleteUserUseCase implements IDeleteUserUseCase {
 
-  /**
+/**
  * Creates an instance of DeleteUserUseCase.
  *
  * @constructor

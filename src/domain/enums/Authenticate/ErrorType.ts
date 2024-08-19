@@ -1,4 +1,6 @@
 
 export enum AuthenticateErrorTypes {
-  InvalidEmailOrPassword = "Email or password is invalid."
+  InvalidEmailOrPassword = "Email or password is invalid.",
+  TokenIsMissing = "Token is missing.",
+  InvalidToken = "Invalid Authorization Or Token Expire"
 }
