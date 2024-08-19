@@ -3,7 +3,7 @@ import { ResponseDTO } from "@domain/dtos/Response"
 import { IUsersRepository } from '@application/repositories/User';
 import logging from "@config/logging";
 import { UserErrorType } from "@domain/enums/user/ErrorType"
-
+import "@config/logging"
 /**
  * use case for get all user data
  * 
@@ -38,6 +38,7 @@ export class GetAllUserUseCase implements IGetAllUserUseCase {
       }
       return { data: userList, success: true }
     } catch (error: any) {
+      logging.error(error)
       return { data: { error: error.message }, success: false }
     }
   }

@@ -1,5 +1,6 @@
 import { Request, Response, Router } from 'express'
 import { expressAdapter } from '../../adapters/express'
+import { AuthenticateToken } from '@presentation/express/middlewares/AuthenticateToken';
 
 import { createUserComposer } from '@infrastructure/services/User/createUser';
 import { getOneUserComposer } from '@infrastructure/services/User/getOneUser';
@@ -48,7 +49,7 @@ userRoutes.delete('/:id', async (request: Request, response: Response) => {
 /**
  * Endpoint to get all user.
  */
-userRoutes.get('/getAll', async (request: Request, response: Response) => {
+userRoutes.get('/getAll', AuthenticateToken, async (request: Request, response: Response) => {
   const adapter = await expressAdapter(request, getAllUserComposer())
   return response.status(adapter.statusCode).json(adapter.body)
 })
