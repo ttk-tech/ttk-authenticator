@@ -1,8 +1,6 @@
 import { Request, Response, Router } from 'express'
 import { expressAdapter } from '@presentation/adapters/express'
-
 import { authenticateUserComposer } from '@infrastructure/services/Authentication/authenticateUser'
-
 
 const authenticateRoutes = Router()
 
