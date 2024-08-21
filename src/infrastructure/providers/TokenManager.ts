@@ -2,7 +2,7 @@ import { ITokenManagerProvider } from '@application/providers/TokenManager';
 import { sign, verify } from "jsonwebtoken"
 import { server } from '@config/config'
 import "@config/logging";
-
+import dayjs from 'dayjs';
 
 
 export class TokenManager implements ITokenManagerProvider {
@@ -16,16 +16,17 @@ export class TokenManager implements ITokenManagerProvider {
 
     const generatedToken = sign({}, secretKey, {
       subject: token,
-      expiresIn: "1h",
+      expiresIn: "30m",
     })
     return generatedToken
   }
 
   validateTokenAge(expires_in: number): boolean {
-    return true
+    logging.info(dayjs().isAfter(dayjs.unix(expires_in)))
+    return dayjs().isAfter(dayjs.unix(expires_in))
   }
 
-   validateToken(token: string): boolean {
+  validateToken(token: string): boolean {
     try {
       const secretKey = server.SECRET_KEY
       verify(token, secretKey)

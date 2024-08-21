@@ -31,7 +31,6 @@ export class AuthenticateUserUseCase implements IAuthenticateUserUseCase {
         }
       }
 
-
       const passwordCorrect = await this.passwordHasher.comparePasswords(
         password,
         user.password

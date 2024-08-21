@@ -33,3 +33,7 @@
 # 7. JSON Web Token
 
 - yarn add json-web-token
+
+# 8. DAYJS
+
+- yarn add dayjs
