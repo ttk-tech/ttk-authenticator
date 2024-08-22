@@ -23,7 +23,6 @@ import { prismaClient } from '../../databases/connection'
  * @function
  * @returns {IController} The configured authentication controller.
  */
-
 export function authenticateUserComposer(): IController {
   const userRepository: IUsersRepository = new UserRepository(prismaClient)
   const refreshTokenRepository: IRefreshTokenRepository = new RefreshTokenRepository(prismaClient)

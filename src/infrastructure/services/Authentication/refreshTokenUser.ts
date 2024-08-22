@@ -11,7 +11,12 @@ import { TokenManager } from '@infrastructure/providers/TokenManager';
 import { RefreshTokenUserController } from '@presentation/http/controllers/Authenticate/RefreshTokenUser'
 import { IController } from '@presentation/http/controllers/IController'
 
-
+/**
+ * Composer function for creating and configuring the components required for the refresh token flow.
+ *
+ * @function
+ * @returns {IController} The configured authentication controller.
+ */
 export function refreshTokenUserComposer(): IController {
   const refreshTokenRepository: IRefreshTokenRepository = new RefreshTokenRepository(prismaClient)
   const tokenManager: ITokenManagerProvider = new TokenManager()

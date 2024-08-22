@@ -6,11 +6,11 @@
 export interface IAuthenticateUserDTO {
   /**
    * The user email identifier for the user.
-   */
+  */
   email: string
 
   /**
     * The password of user.
-    */
+  */
   password: string
 }
