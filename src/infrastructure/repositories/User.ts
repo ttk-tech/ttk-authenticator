@@ -5,7 +5,6 @@ import { ICreateUserRequestDTO } from '@domain/dtos/User/CreateUser';
 import { IUserOutRequestDTO } from '@domain/dtos/User/UserOut';
 import { IUserInRequestDTO } from '@domain/dtos/User/UserIn';
 import { IUpdateUserRequestDTO } from '@domain/dtos/User/UpdateUser';
-// import { PaginationDTO } from '../../domain/dtos/Pagination';
 
 
 export class UserRepository implements IUsersRepository {

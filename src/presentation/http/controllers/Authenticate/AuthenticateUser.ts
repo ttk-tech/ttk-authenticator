@@ -11,15 +11,28 @@ import { IAuthenticateUserUseCase } from '@application/useCases/Authenticate/Aut
 
 import { ResponseDTO } from '@domain/dtos/Response'
 
-
+/**
+ * Controller for handling requests to refresh authentication tokens.
+ */
 export class AuthenticateUserController implements IController {
-
+  
+  /**
+   * Creates an instance of AuthenticateUserController.
+   * @param authenticateUserUseCase The use case for authentication user.
+   * @param httpErrors HTTP errors utility.
+   * @param httpSuccess HTTP success utility.
+   */
   constructor(
     private authenticateUserUseCase: IAuthenticateUserUseCase,
     private httpErrors: IHttpErrors = new HttpErrors(),
     private httpSuccess: IHttpSuccess = new HttpSuccess(),
   ) { }
 
+  /**
+   * Handles an HTTP request to authentication user.
+   * @param httpRequest The HTTP request to handle.
+   * @returns A promise that resolves to an HTTP response.
+   */
   async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
     let error
     let response: ResponseDTO

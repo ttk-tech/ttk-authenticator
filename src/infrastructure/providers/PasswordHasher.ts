@@ -1,9 +1,22 @@
 import { IPasswordHasher } from "../../application/providers/PasswordHasher";
 import * as bcrypt from 'bcrypt';
 
+/**
+ * Provider for hassing password.
+ *
+ * @class
+ * @implements {IPasswordHasher}
+ */
 export class PasswordHasher implements IPasswordHasher {
+  
+  
+  /**
+   * Creates an instance of PasswordHasher.
+   *
+   * @constructor
+   * @param {number} saltRounds - salt number use for hashing funtion.
+   */
   private readonly saltRounds: number;
-
   constructor(saltRounds: number = 10) {
     this.saltRounds = saltRounds;
   }

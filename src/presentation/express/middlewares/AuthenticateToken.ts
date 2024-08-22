@@ -1,7 +1,13 @@
 import { RequestHandler, NextFunction, Request, Response } from "express"
 import { TokenManager } from "@infrastructure/providers/TokenManager"
-import { AuthenticateErrorTypes } from "@domain/enums/Authenticate/ErrorType"
+import { AuthenticateErrorTypes } from "@domain/enums/authenticate/ErrorType"
 import "@config/logging"
+
+/**
+ * Authenticate middleware use for routes.
+ * Validate token by header authorization
+ * @returns {next()}
+ */
 
 export const AuthenticateToken: RequestHandler = (
     request: Request,

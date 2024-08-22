@@ -1,5 +1,10 @@
 import { UserEntity } from "./User"
 
+/**
+ * Interface representing the structure of a refresh token.
+ *
+ * @interface
+ */
 export interface IRefreshTokenEntity {
   expires_in: number
   user_id: string
@@ -7,6 +12,11 @@ export interface IRefreshTokenEntity {
   createdAt: Date
 }
 
+/**
+ * Class representing a RefreshToken.
+ *
+ * @class
+ */
 export class RefreshTokenEntity {
   private _expires_in: number
   private _user_id: string
@@ -14,7 +24,7 @@ export class RefreshTokenEntity {
   private _createdAt: Date
 
   /**
-   * Gets the user's name.
+   * Gets the expirse time for refresh token.
    *
    * @readonly
    */

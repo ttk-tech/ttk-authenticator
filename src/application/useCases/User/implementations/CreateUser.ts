@@ -2,8 +2,9 @@ import { ResponseDTO } from '@domain/dtos/Response';
 import { ICreateUserRequestDTO } from '@domain/dtos/User/CreateUser';
 import { UserEntity } from '@domain/entities/User';
 import { UserErrorType } from '@domain/enums/user/ErrorType';
-import { IPasswordHasher } from '../../../providers/PasswordHasher'
-import { IUsersRepository } from '../../../repositories/User'
+
+import { IPasswordHasher } from '@application/providers/PasswordHasher'
+import { IUsersRepository } from '@application/repositories/User'
 import { ICreateUserUseCase } from '../CreateUser'
 import "@config/logging"
 
@@ -14,6 +15,7 @@ import "@config/logging"
  * @implements {ICreateUserUseCase}
  */
 export class CreateUserUseCase implements ICreateUserUseCase {
+  
   /**
    * Creates an instance of CreateUserUseCase.
    *
@@ -21,7 +23,6 @@ export class CreateUserUseCase implements ICreateUserUseCase {
    * @param {IUsersRepository} userRepository - The repository for user data.
    * @param {IPasswordHasher} passwordHasher - The password hasher provider.
    */
-
   constructor(
     private userRepository: IUsersRepository,
     private passwordHasher: IPasswordHasher,

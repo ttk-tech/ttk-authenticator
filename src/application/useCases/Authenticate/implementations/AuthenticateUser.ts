@@ -6,12 +6,28 @@ import { ITokenManagerProvider } from '@application/providers/TokenManager';
 
 import { ResponseDTO } from '@domain/dtos/Response';
 import { IAuthenticateUserDTO } from '@domain/dtos/Authenticate/AuthenticateUser';
-import { AuthenticateErrorTypes } from '@domain/enums/Authenticate/ErrorType';
+import { AuthenticateErrorTypes } from '@domain/enums/authenticate/ErrorType';
 import { IUserInRequestDTO } from '@domain/dtos/User/UserIn';
 
 import "@config/logging"
-export class AuthenticateUserUseCase implements IAuthenticateUserUseCase {
 
+/**
+ * Use case for authenticate user (logIn/signIn).
+ *
+ * @class
+ * @implements {IAuthenticateUserUseCase}
+ */
+export class AuthenticateUserUseCase implements IAuthenticateUserUseCase {
+  
+  /**
+   * Creates an instance of AuthenticateUserUseCase.
+   *
+   * @constructor
+   * @param {IUsersRepository} userRepository - The repository for user data.
+   * @param {IRefreshTokenRepository} refreshTokenRepository - The repository for refresh token data.
+   * @param {IPasswordHasher} passwordHasher - The password hasher provider.
+   * @param {ITokenManagerProvider} tokenManager - The token manager hasher provider.
+   */
   constructor(
     private userRepository: IUsersRepository,
     private refreshTokenRepository: IRefreshTokenRepository,
@@ -19,6 +35,13 @@ export class AuthenticateUserUseCase implements IAuthenticateUserUseCase {
     private tokenManager: ITokenManagerProvider
   ) { }
 
+  /**
+   * Executes the authenticate user use case.
+   *
+   * @async
+   * @param {IAuthenticateUserDTO} request - The refresh token validation request data.
+   * @returns {Promise<ResponseDTO>} The response data.
+   */
   async execute({ email, password }: IAuthenticateUserDTO): Promise<ResponseDTO> {
     try {
 
@@ -45,7 +68,6 @@ export class AuthenticateUserUseCase implements IAuthenticateUserUseCase {
 
       const token = await this.tokenManager.generateToken(user.id)
 
-
       const existToken = await this.refreshTokenRepository.findByUserID(user.id)
 
       if (existToken) {
@@ -55,7 +77,6 @@ export class AuthenticateUserUseCase implements IAuthenticateUserUseCase {
       const refreshToken = await this.refreshTokenRepository.create(user.id)
 
       return { data: { token, refreshToken, user }, success: true }
-
     }
     catch (error: any) {
       logging.error(error.message)

@@ -18,12 +18,12 @@ export const Main = async () => {
     httpServer = http.createServer(application);
     httpServer.listen(server.SERVER_PORT, () => {
         logging.log('----------------------------------------');
-        logging.log(`🚀 ${server.SERVER_HOSTNAME} server started on ${server.SERVER_PORT}`);
+        logging.log(`🚀 ${server.SERVER_HOSTNAME} server started on ${server.SERVER_PORT} [TRADITIONAL VERSION]`);
         logging.log('----------------------------------------');
     });
 
     application.get(`/${server.SERVER_HOSTNAME}/health-check`, (req, res, next) => {
-        return res.status(200).json({ hello: 'TTK Authenticator! 🚀' });
+        return res.status(200).json({ hello: 'TTK Authenticator [TRADITIONAL VERSION]! 🚀' });
     });
 
     // database connection
